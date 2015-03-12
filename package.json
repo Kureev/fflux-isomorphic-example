@@ -1,0 +1,32 @@
+{
+  "name": "fflux-isomorphic-example",
+  "version": "0.1.0",
+  "description": "FFlux isomorphic example",
+  "main": "client.js",
+  "dependencies": {
+    "ejs": "^2.3.1",
+    "babel-loader": "^4.1.0",
+    "babel-core": "^4.7.8",
+    "express": "^4.12.2",
+    "fflux": "^0.11.2",
+    "node-jsx": "^0.12.4",
+    "react": "^0.13",
+    "webpack": "^1.7.2",
+    "react-hot-loader": "^1.2.3",
+    "webpack-dev-server": "^1.7.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "npm test",
+    "start": "node server.js"
+  },
+  "keywords": [
+    "fflux",
+    "isomorphic",
+    "flux",
+    "reactjs",
+    "javascript"
+  ],
+  "author": "Alexey Kureev <kureev-mail@ya.ru> (https://github.com/Kureev)",
+  "license": "MIT"
+}

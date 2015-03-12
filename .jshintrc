@@ -1,0 +1,38 @@
+{
+    "maxerr"        : 50,       // {int} Maximum error before stopping
+    "immed"         : false,    // true: Require immediate invocations to be wrapped in parens e.g. `(function () { } ());`
+    "indent"        : 4,        // {int} Number of spaces to use for indentation
+    "nonbsp"        : true,     // true: Prohibit "non-breaking whitespace" characters.
+    "nonew"         : false,    // true: Prohibit use of constructors for side-effects (without assignment)
+    "plusplus"      : false,    // true: Prohibit use of `++` & `--`
+    "maxparams"     : 4,        // {int} Max number of formal params allowed per function
+    "maxdepth"      : 3,        // {int} Max depth of nested blocks (within functions)
+    "maxstatements" : false,    // {int} Max number statements per function
+    "maxcomplexity" : false,    // {int} Max cyclomatic complexity per function
+    "maxlen"        : 80,       // {int} Max number of characters per line
+
+    // Relaxing
+    "esnext"        : true,
+    "asi"           : false,     // true: Tolerate Automatic Semicolon Insertion (no semicolons)
+    "boss"          : false,     // true: Tolerate assignments where comparisons would be expected
+    "debug"         : false,     // true: Allow debugger statements e.g. browser breakpoints.
+    "eqnull"        : false,     // true: Tolerate use of `== null`
+    "es5"           : true,     // true: Allow ES5 syntax (ex: getters and setters)
+    "moz"           : false,     // true: Allow Mozilla specific syntax
+    "expr"          : false,     // true: Tolerate `ExpressionStatement` as Programs
+    "funcscope"     : false,     // true: Tolerate defining variables inside control statements
+    "globalstrict"  : false,     // true: Allow global "use strict" (also enables 'strict')
+    "lastsemic"     : false,     // true: Tolerate omitting a semicolon for the last statement
+    "laxbreak"      : false,     // true: Tolerate possibly unsafe line breakings
+    "multistr"      : true,      // true: Tolerate multi-line strings
+    "noyield"       : false,     // true: Tolerate generator functions with no yield statement in them.
+    "notypeof"      : false,     // true: Tolerate invalid typeof operator values
+    "shadow"        : false,     // true: Allows re-define variables later in code e.g. `var x=1; x=2;`
+    "sub"           : false,     // true: Tolerate using `[]` notation when it can still be expressed in dot notation
+
+    // Environments
+    "browser"       : true,     // Web Browser (window, document, etc)
+    "devel"         : true,     // Development/debugging (alert, confirm, etc)
+    "mocha"         : true,     // Mocha
+    "node"          : true      // Node.js
+}
