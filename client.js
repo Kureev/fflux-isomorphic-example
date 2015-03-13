@@ -1,9 +1,11 @@
 'use strict';
-
+ 
 import React from 'react';
-import Layout from './app/components/layout.jsx';
+import { run as runRouter, HistoryLocation } from 'react-router';
+import routes from './app/routes';
+ 
+const contentEl = document.getElementById('content');
 
-React.render(
-    <Layout />, 
-    document.getElementById('content')
+runRouter(routes, HistoryLocation, Handler =>
+  React.render(<Handler />, contentEl)
 );

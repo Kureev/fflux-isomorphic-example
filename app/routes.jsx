@@ -8,7 +8,7 @@ import NotFound from './components/notFound.jsx';
 import Wishlist from './components/wishlist.jsx';
 
 const routes = (
-    <Route name="listItems" path="/index.html" handler={Layout}>
+    <Route name="listItems" path="/" handler={Layout}>
         <DefaultRoute name="index" handler={ListItems} />
         <Route name="wishlist" path="wishlist" handler={Wishlist} />
         <NotFound name="notfound" handler={NotFound} />
