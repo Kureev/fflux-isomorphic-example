@@ -1,22 +1,20 @@
 'use strict';
 
 import React, { Component } from 'react';
+import Rotuer, { RouteHandler } from 'react-router';
 import Header from './header';
 import Footer from './footer';
 
-class Layout extends Component {
-    onClick() {
-        alert('hello, world!');
-    }
-
+const Layout = React.createClass({
     render() {
         return (
             <section>
                 <Header />
+                <RouteHandler />
                 <Footer />
             </section>
         );
     }
-}
+});
 
 export default Layout;

@@ -5,7 +5,7 @@ import React, { Component } from 'react';
 const profileUrl = 'http://kureev.com';
 const currentYear = new Date().getFullYear(); 
 
-class Footer extends Component {
+const Footer = React.createClass({
     render() {
         return (
             <div>
@@ -14,6 +14,6 @@ class Footer extends Component {
             </div>
         );
     }
-}
+});
 
 export default Footer;

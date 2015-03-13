@@ -9,6 +9,8 @@ require('./webpack.server');
 
 var express = require('express');
 var React = require('react');
+var Router = require('react-router');
+var routes = require('./app/routes.jsx');
 
 var Layout = require('./app/components/layout.jsx');
 
@@ -26,12 +28,13 @@ app.set('view engine', 'ejs');
  * Route `/index.html` is needed to let
  * webpack-dev-server work with our application
  */
-app.get(['/', '/index.html'], function (req, res) {
-    var element = React.createElement(Layout);
-    var content = React.renderToString(element);
-    
-    res.render('layout', {
-        content: content
+app.use(function (req, res) {
+    Router.run(routes, req.url, function (Handler) {
+        const content = React.renderToString(React.createElement(Handler));
+        
+        res.render('layout', {
+            content: content
+        });
     });
 });
 

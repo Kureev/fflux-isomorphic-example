@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 
 const ffluxUrl = 'http://github.com/Kureev/fflux';
 
-class Header extends Component {
+const Header = React.createClass({
     render() {
         return (
             <section>
@@ -14,6 +14,6 @@ class Header extends Component {
             </section>
         );
     }
-}
+});
 
 export default Header;

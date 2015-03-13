@@ -1,5 +1,4 @@
 {
-    "maxerr"        : 50,       // {int} Maximum error before stopping
     "immed"         : false,    // true: Require immediate invocations to be wrapped in parens e.g. `(function () { } ());`
     "indent"        : 4,        // {int} Number of spaces to use for indentation
     "nonbsp"        : true,     // true: Prohibit "non-breaking whitespace" characters.
@@ -9,7 +8,7 @@
     "maxdepth"      : 3,        // {int} Max depth of nested blocks (within functions)
     "maxstatements" : false,    // {int} Max number statements per function
     "maxcomplexity" : false,    // {int} Max cyclomatic complexity per function
-    "maxlen"        : 80,       // {int} Max number of characters per line
+    "maxlen"        : 100,       // {int} Max number of characters per line
 
     // Relaxing
     "esnext"        : true,
