@@ -1,0 +1,10 @@
+{
+    "total": 2,
+    "items": [{
+        "name": "Panerai Luminor 950",
+        "photo": "./img/1.jpg"
+    }, {
+        "name": "Panerai Radiomir 940",
+        "photo": "./img/2.jpg"
+    }]
+}

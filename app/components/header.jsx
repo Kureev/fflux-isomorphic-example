@@ -3,24 +3,22 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router';
 
-const ffluxUrl = 'http://github.com/Kureev/fflux';
-
 const Header = React.createClass({
     render() {
         return (
-            <section>
-                <h2>Wishlist example</h2>
-                <span>this example using </span>
-                <a href={ffluxUrl}>fflux</a>
+            <section className="header">
+                <div className="header-content">
+                    <h2 className="header-caption">Wishlist example</h2>
 
-                <ul>
-                    <li>
-                        <Link to="index">Items List</Link>
-                    </li>
-                    <li>
-                        <Link to="wishlist">Wishlist</Link>
-                    </li>
-                </ul>
+                    <ul className="header-menu">
+                        <li className="header-menu-item">
+                            <Link to="index">Items List</Link>
+                        </li>
+                        <li className="header-menu-item">
+                            <Link to="wishlist">Wishlist</Link>
+                        </li>
+                    </ul>
+                </div>
             </section>
         );
     }

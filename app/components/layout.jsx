@@ -8,9 +8,11 @@ import Footer from './footer';
 const Layout = React.createClass({
     render() {
         return (
-            <section>
+            <section className="container">
                 <Header />
-                <RouteHandler />
+                <section className="content">
+                    <RouteHandler />
+                </section>
                 <Footer />
             </section>
         );
