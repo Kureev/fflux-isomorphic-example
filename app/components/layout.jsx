@@ -11,7 +11,7 @@ const Layout = React.createClass({
             <section className="container">
                 <Header />
                 <section className="content">
-                    <RouteHandler />
+                    <RouteHandler {...this.props} />
                 </section>
                 <Footer />
             </section>

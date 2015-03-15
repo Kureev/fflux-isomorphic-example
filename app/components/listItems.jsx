@@ -3,20 +3,9 @@
 import React, { Component } from 'react';
 
 const ListItems = React.createClass({
-    getDefaultProps() {
-        return {
-            items: [{
-                "name": "Panerai Luminor 950",
-                "photo": "./img/1.jpg"
-            }, {
-                "name": "Panerai Radiomir 940",
-                "photo": "./img/2.jpg"
-            }]
-        };
-    },
 
     getItems() {
-        var items = this.props.items;
+        var items = this.props.data.items;
 
         return items.map(function(i) {
             return (
@@ -29,8 +18,9 @@ const ListItems = React.createClass({
 
     render() {
         let content;
+        let items = this.getItems();
         
-        if (this.props.items.length) {
+        if (items.length) {
             content = <ul>{this.getItems()}</ul>;
         } else {
             content = <span>No items to display</span>;

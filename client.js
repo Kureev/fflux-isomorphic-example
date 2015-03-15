@@ -6,6 +6,6 @@ import routes from './app/routes';
  
 const contentEl = document.getElementById('content');
 
-runRouter(routes, HistoryLocation, Handler =>
-  React.render(<Handler />, contentEl)
-);
+runRouter(routes, HistoryLocation, function(Handler, state) {
+    React.render(<Handler data={window.__DATA__}/>, contentEl);
+});
