@@ -11,7 +11,7 @@ const routes = (
     <Route name="listItems" path="/" handler={Layout}>
         <DefaultRoute name="index" handler={ListItems} />
         <Route name="wishlist" path="wishlist" handler={Wishlist} />
-        <NotFound name="notfound" handler={NotFound} />
+        <NotFoundRoute name="notfound" handler={NotFound} />
     </Route>
 );
 
