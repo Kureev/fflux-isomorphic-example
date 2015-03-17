@@ -19,11 +19,11 @@ function fetchData(path) {
             case '/':
                 resolve({
                     items: [{
-                        "name": "Panerai Luminor 950",
-                        "photo": "./img/1.jpg"
+                        "id": 1,
+                        "name": "Panerai Luminor 950"
                     }, {
-                        "name": "Panerai Radiomir 940",
-                        "photo": "./img/2.jpg"
+                        "id": 2,
+                        "name": "Panerai Radiomir 940"
                     }]
                 });
                 break;

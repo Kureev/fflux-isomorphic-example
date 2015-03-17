@@ -7,9 +7,9 @@ const ListItems = React.createClass({
     getItems() {
         var items = this.props.data.items;
 
-        return items.map(function(item, index) {
+        return items.map(function(item) {
             return (
-                <li key={index}>
+                <li key={item.id}>
                     <span>{item.name}</span>
                 </li>
             );
