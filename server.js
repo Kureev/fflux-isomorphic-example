@@ -58,7 +58,7 @@ app.use(function (req, res) {
             
             res.render('layout', {
                 content: content,
-                data: JSON.stringify(data)
+                data: JSON.stringify(data || {})
             });
         });
     });
