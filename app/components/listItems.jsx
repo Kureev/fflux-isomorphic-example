@@ -7,10 +7,10 @@ const ListItems = React.createClass({
     getItems() {
         var items = this.props.data.items;
 
-        return items.map(function(i) {
+        return items.map(function(item, index) {
             return (
-                <li>
-                    <span>{i.name}</span>
+                <li key={index}>
+                    <span>{item.name}</span>
                 </li>
             );
         });
