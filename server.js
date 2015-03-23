@@ -7,6 +7,12 @@ require('babel/register');
 /* Run webpack-dev-server */
 require('./webpack.server');
 
+var React = require('react');
+var Router = require('react-router');
+var routes = require('./app/routes');
+var fetchData = require('./app/fetchData');
+var wishlist = require('./app/app');
+
 var express = require('express');
 
 var app = express();
@@ -22,7 +28,26 @@ app.set('view engine', 'ejs');
  * Route `/index.html` is needed to let
  * webpack-dev-server work with our application
  */
-app.use(require('./app/router.jsx'));
+app.use(function(req, res) {
+    Router.run(routes, req.url, function(Handler, state) {
+        fetchData(state.path).then(function(data) {
+            if (data) {
+                wishlist.stores().rehydrate(data);
+            }
+
+            const content = React.renderToString(
+                React.createElement(Handler, {
+                    app: wishlist
+                })
+            );
+
+            res.render('layout', {
+                content: content,
+                data: JSON.stringify(data || [])
+            });
+        });
+    });
+});
 
 /* Run express server on port 3000 */
 var server = app.listen(3000, function () {
