@@ -4,16 +4,19 @@ import React, { Component } from 'react';
 
 const ListItems = React.createClass({
 
-    getItems() {
-        var items = this.props.data.items;
+    statics: {
+        fetchData: (actions, params) => {
+            actions
+                .get('list actions')
+                .fetch(params.id);
+        }
+    },
 
-        return items.map(function(item) {
-            return (
-                <li key={item.id}>
-                    <span>{item.name}</span>
-                </li>
-            );
-        });
+    getItems() {
+        return this.props.app
+            .stores()
+            .get('list')
+            .getItems();
     },
 
     render() {
@@ -21,7 +24,15 @@ const ListItems = React.createClass({
         let items = this.getItems();
         
         if (items.length) {
-            content = <ul>{this.getItems()}</ul>;
+            content = <ul>{
+                items.map((item) => {
+                    return (
+                        <li key={item.id}>
+                            <span>{item.name}</span>
+                        </li>
+                    );
+                })
+            }</ul>;
         } else {
             content = <span>No items to display</span>;
         }

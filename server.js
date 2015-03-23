@@ -8,31 +8,6 @@ require('babel/register');
 require('./webpack.server');
 
 var express = require('express');
-var React = require('react');
-var Router = require('react-router');
-var routes = require('./app/routes.jsx');
-var Layout = require('./app/components/layout.jsx');
-
-function fetchData(path) {
-    return new Promise(function(resolve, reject) {
-        switch (path) {
-            case '/':
-                resolve({
-                    items: [{
-                        "id": 1,
-                        "name": "Panerai Luminor 950"
-                    }, {
-                        "id": 2,
-                        "name": "Panerai Radiomir 940"
-                    }]
-                });
-                break;
-            default:
-                resolve();
-                break;
-        }
-    });
-}
 
 var app = express();
 /* Configure static path for express */
@@ -47,22 +22,7 @@ app.set('view engine', 'ejs');
  * Route `/index.html` is needed to let
  * webpack-dev-server work with our application
  */
-app.use(function (req, res) {
-    Router.run(routes, req.url, function (Handler, state) {
-        fetchData(state.path).then(function(data) {
-            const content = React.renderToString(
-                React.createElement(Handler, { 
-                    data: data
-                })
-            );
-            
-            res.render('layout', {
-                content: content,
-                data: JSON.stringify(data || {})
-            });
-        });
-    });
-});
+app.use(require('./app/router.jsx'));
 
 /* Run express server on port 3000 */
 var server = app.listen(3000, function () {
