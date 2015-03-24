@@ -3,35 +3,86 @@
 import React from 'react';
 import ListItems from './listItems';
 
+/**
+ * Generate list item
+ * @param  {Object} data
+ * @return {React.Component}
+ */
+function getItem(data) {
+    return (
+        <li key={data.id}>
+            <span>{data.name}</span>
+        </li>
+    );
+}
+
 const ListItemsContainer = React.createClass({
 
     statics: {
-        fetchData: (actions, params) => {
-            actions
-                .get('list actions')
-                .fetch(params.id);
+        fetchData: (app) => {
+            app.actions()
+                .get('list')
+                .fetch();
         }
     },
 
-    getInitialState() {
-        return this.context.store.getList();
+    componentWillMount() {
+        const app = this.props.app;
+
+        app.stores()
+            .get('list')
+            .addListener('change', this.storeDidUpdate);
+
+        ListItemsContainer.fetchData(app);
     },
 
-    getItems() {
-        var items = this.props.data.items;
+    componentWillUnmount() {
+        const app = this.props.app;
 
-        return items.map((item) => {
-            return (
-                <li key={item.id}>
-                    <span>{item.name}</span>
-                </li>
-            );
+        app.stores()
+            .get('list')
+            .removeListener('change', this.storeDidUpdate);
+    },
+
+    getInitialState() {
+        const store = this.props.app
+            .stores()
+            .get('list');
+
+        return {
+            items: store.getItems()
+        };
+    },
+
+    storeDidUpdate() {
+        const store = this.props.app
+            .stores()
+            .get('list');
+
+        this.setState({
+            items: store.getItems()
         });
+    },
+
+    /**
+     * Get items array
+     * @return {Array}
+     */
+    getItems() {
+        let elements;
+
+        if (!this.state || !this.state.items) {
+            elements = <li>Loading...</li>;
+        } else {
+            elements = this.state.items.map(getItem);
+        }
+
+        return elements;
     },
 
     render() {
         return (
-            <ListItems items={this.state.list} />
+            <ListItems items={this.getItems()} />
         );
     }
 });
