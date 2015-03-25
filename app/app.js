@@ -13,13 +13,13 @@ import listActions from './actions/list';
  * It'll be used as isomorphic container for
  * the whole application
  */
-var app = new Application({
-    stores: {
-        'list': new ListStore()
-    },
-    actions: {
-        'list': listActions
-    }
-});
 
-export default app;
+export default () =>
+    new Application({
+        stores: {
+            'list': new ListStore()
+        },
+        actions: {
+            'list': listActions
+        }
+    });

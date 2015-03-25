@@ -3,11 +3,43 @@
 import React, { Component } from 'react';
 
 const ListItems = React.createClass({
+    /**
+     * Generate list item
+     * @param  {Object} data
+     * @return {React.Component}
+     */
+    getItem(data) {
+        let style = {
+            backgroundImage: 'url(' + data.img + ')'
+        };
+
+        const addToWishlist = this.props.actions.addToWishlist.bind(null, data.id);
+
+        return (
+            <li key={data.id}
+                className="wishlist-item"
+                onClick={addToWishlist}
+                style={style}>
+                <span className="wishlist-item-title">{data.name}</span>
+            </li>
+        );
+    },
+
+    /**
+     * Get items list
+     * @param  {Array} items
+     * @return {Array|React.Component}
+     */
+    getItems(items) {
+        return items ? items.map(this.getItem) : <li>Loading...</li>;
+    },
 
     render() {
         return (
             <section>
-                <ul>{this.props.items}</ul>
+                <ul className="wishlist-container">
+                    {this.getItems(this.props.items)}
+                </ul>
             </section>
         );
     }

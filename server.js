@@ -10,8 +10,7 @@ require('./webpack.server');
 var React = require('react');
 var Router = require('react-router');
 var routes = require('./app/routes');
-var fetchData = require('./app/fetchData');
-var wishlist = require('./app/app');
+var Wishlist = require('./app/app');
 
 var express = require('express');
 
@@ -29,12 +28,25 @@ app.set('view engine', 'ejs');
  * webpack-dev-server work with our application
  */
 app.use(function(req, res) {
-    Router.run(routes, req.url, function(Handler, state) {
-        fetchData(state.path).then(function(data) {
-            if (data) {
-                wishlist.stores().rehydrate(data);
-            }
+    const wishlist = new Wishlist();
 
+    Router.run(routes, req.url, function(Handler, state) {
+        const toFetch = state.routes
+            .filter(function(route) { return route.path === req.url; });
+
+        function fetchData(routes, params) {
+            var queue = [];
+
+            routes.forEach(function(route) {
+                if (route.handler.fetchData) {
+                    queue.push(route.handler.fetchData(wishlist, params));
+                }
+            });
+
+            return Promise.all(queue);
+        }
+
+        fetchData(toFetch, state.params).then(function() {
             const content = React.renderToString(
                 React.createElement(Handler, {
                     app: wishlist
@@ -43,7 +55,7 @@ app.use(function(req, res) {
 
             res.render('layout', {
                 content: content,
-                data: JSON.stringify(data || [])
+                data: JSON.stringify(wishlist.stores().dehydrate())
             });
         });
     });

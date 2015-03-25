@@ -39,6 +39,32 @@
     margin: 40px auto;
 }
 
+.wishlist-container {
+    margin: 0;
+    padding: 0;
+}
+
+.wishlist-item {
+    display: inline-block;
+    width: 200px;
+    height: 300px;
+    border: 1px solid black;
+    margin-right: 10px;
+    position: relative;
+    background-position: center;
+}
+
+.wishlist-item-title {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    box-sizing: border-box;
+    color: #fff;
+    padding: 10px;
+    height: 70px;
+    background: rgba(0, 0, 0, .7);
+}
+
 .header-content,
 .footer-content {
     width: 960px;
