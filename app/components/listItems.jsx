@@ -13,7 +13,7 @@ const ListItems = React.createClass({
             backgroundImage: 'url(' + data.img + ')'
         };
 
-        const addToWishlist = this.props.actions.addToWishlist.bind(null, data._id);
+        const addToWishlist = this.props.actions.add.bind(null, data._id);
 
         return (
             <li key={data._id}

@@ -8,19 +8,21 @@ export default (app) => {
 
     /* Add new item to the wishlist */
     app.post('/api/wishlist', (req, res) => {
-        const condition = { _id: req.body.itemId };
+        const condition = { _id: req.body._id };
 
         db.wishlist.findOne(condition, (err, found) => {
             if (err) {
-                res.json(err);
+                res.status(400).send(err);
             }
 
             if (found) {
-                res.json({ error: 'Already in the wishlist'});
+                res.status(400).send('Already in the wishlist');
             } else {
-                db.list.findOne(condition, (err, record) =>
-                    db.wishlist.insert(record, () => res.json(record))
-                );
+                db.list.findOne(condition, (err, record) => {
+                    db.wishlist.insert(record, (err, record) => {
+                        res.json(record);
+                    });
+                });
             }
         });
     });

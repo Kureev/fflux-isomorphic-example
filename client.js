@@ -13,6 +13,8 @@ if (window.__DATA__.length) {
     app.stores().rehydrate(window.__DATA__);
 }
 
+window.app = app;
+
 runRouter(routes, HistoryLocation, function(Handler, state) {
     React.render(<Handler app={app} />, contentEl);
 });

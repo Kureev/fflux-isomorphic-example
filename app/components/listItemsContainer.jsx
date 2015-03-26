@@ -46,7 +46,7 @@ const ListItemsContainer = React.createClass({
 
         const actions = this.props.app
             .actions()
-            .get('list');
+            .get('wishlist');
 
         return (
             <ListItems actions={actions} items={store.getItems()} />

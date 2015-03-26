@@ -5,7 +5,7 @@
 require('babel/register');
 
 /* Run webpack-dev-server */
-require('./server/webpack.server');
+// require('./server/webpack.server');
 
 const React = require('react');
 const Router = require('react-router');
@@ -47,9 +47,9 @@ app.use(function(req, res) {
             var queue = [];
 
             routes.forEach(function(route) {
-                if (route.handler.fetchData) {
-                    queue.push(route.handler.fetchData(wishlist, params));
-                }
+                // if (route.handler.fetchData) {
+                queue.push(route.handler.fetchData(wishlist, params));
+                // }
             });
 
             return Promise.all(queue);

@@ -15,22 +15,5 @@ export default {
                     done();
                 });
         });
-    },
-
-    /**
-     * Store item to wishlist
-     * @param  {Function} dispatch
-     * @param  {Number} itemId
-     * @return {Void}
-     */
-    addToWishlist(dispatch, itemId) {
-        request
-            .post('http://localhost:3000/api/wishlist')
-            .send({ itemId: itemId })
-            .end((err, res) => {
-                dispatch('ITEM_STORED', {
-                    itemId: itemId
-                });
-            });
     }
 };
