@@ -5,7 +5,7 @@
 require('babel/register');
 
 /* Run webpack-dev-server */
-// require('./server/webpack.server');
+require('./server/webpack.server');
 
 const React = require('react');
 const Router = require('react-router');
