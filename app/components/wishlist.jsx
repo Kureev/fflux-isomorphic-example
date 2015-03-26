@@ -43,9 +43,11 @@ const Wishlist = React.createClass({
             .stores()
             .get('wishlist');
 
-        return (
-            <ListItems actions={actions} items={store.getItems()} />
-        );
+        const items = store.getItems();
+
+        return items.length ?
+            <ListItems actions={actions} items={items} /> :
+            <span>Your wishlist is empty</span>;
     }
 });
 
