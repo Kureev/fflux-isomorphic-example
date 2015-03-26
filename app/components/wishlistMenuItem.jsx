@@ -17,15 +17,23 @@ const WishlistMenuItem = React.createClass({
         this.forceUpdate();
     },
 
+    getCountBadge(count) {
+        if (count > 0) {
+            return (
+                <div className="menu-badge">
+                    <span className="menu-badge-num">{count}</span>
+                </div>
+            );
+        }
+    },
+
     render() {
         const count = this.props.wishlistStore.getItems().length;
         return (
             <li className="header-menu-item">
                 <Link to="wishlist">
                     Wishlist
-                    <div className="menu-badge">
-                        <span className="menu-badge-num">{count}</span>
-                    </div>
+                    {this.getCountBadge(count)}
                 </Link>
             </li>
         );

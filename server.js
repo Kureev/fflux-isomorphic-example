@@ -5,7 +5,7 @@
 require('babel/register');
 
 /* Run webpack-dev-server */
-// require('./server/webpack.server');
+require('./server/webpack.server');
 
 const React = require('react');
 const Router = require('react-router');
@@ -39,23 +39,21 @@ app.set('view engine', 'ejs');
 app.use(function(req, res) {
     const wishlist = new Wishlist();
 
-    Router.run(routes, req.url, function(Handler, state) {
-        const toFetch = state.routes
-            .filter(function(route) { return route.path === req.url; });
+    function fetchData(routes, params) {
+        var queue = [];
 
-        function fetchData(routes, params) {
-            var queue = [];
-
-            routes.forEach(function(route) {
-                // if (route.handler.fetchData) {
+        routes.forEach(function(route) {
+            if (route.handler.fetchData) {
                 queue.push(route.handler.fetchData(wishlist, params));
-                // }
-            });
+            }
+        });
 
-            return Promise.all(queue);
-        }
+        return Promise.all(queue);
+    }
 
-        fetchData(toFetch, state.params).then(function() {
+    Router.run(routes, req.url, function(Handler, state) {
+
+        fetchData(state.routes, state.params).then(function() {
             const content = React.renderToString(
                 React.createElement(Handler, {
                     app: wishlist
