@@ -1,4 +1,4 @@
-## FFlux isomorphic application
+## FFlux isomorphic application - WIP
 Example of usage fflux for creating isomorphic apps
 
 ## Install
