@@ -1,5 +1,3 @@
-'use strict';
-
 import DataStore from 'nedb';
 
 var db = {};

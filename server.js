@@ -5,39 +5,30 @@
 require('babel/register');
 
 /* Run webpack-dev-server */
-require('./webpack.server');
+require('./server/webpack.server');
 
 const React = require('react');
 const Router = require('react-router');
+const express = require('express');
+const bodyParser = require('body-parser');
+
 const routes = require('./app/routes');
 const Wishlist = require('./app/app');
-const db = require('./db');
-
-const express = require('express');
 
 const app = express();
+require('./server/api')(app);
 
 /* Configure static path for express */
 app.use(express.static(__dirname + '/'));
-app.set('views', __dirname + '/views');
+app.set('views', __dirname + '/server/views');
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({
+    extended: true
+}));
 
 /* We're going to use ejs as template engine */
 app.set('view engine', 'ejs');
-
-/* Get list of items */
-app.get('/api/list', function(req, res) {
-    db.list.find({}, function(err, list) {
-        res.json(list);
-    });
-});
-
-app.post('/api/wishlist', function(req, res) {
-
-});
-
-app.get('/api/wishlist', function(req, res) {
-
-});
 
 /*
  * Handle default urls
