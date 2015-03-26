@@ -71,6 +71,12 @@
     background-position: center;
 }
 
+.wishlist-item-toggle {
+    padding-left: 10px;
+    font-size: 20px;
+    cursor: pointer;
+}
+
 .wishlist-item-title {
     position: absolute;
     bottom: 0;

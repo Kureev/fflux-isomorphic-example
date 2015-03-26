@@ -13,14 +13,18 @@ const ListItems = React.createClass({
             backgroundImage: 'url(' + data.img + ')'
         };
 
-        const addToWishlist = this.props.actions.add.bind(null, data._id);
+        const clickHandler = this.props.actions.add.bind(null, data._id);
+        //★
 
         return (
-            <li key={data._id}
-                className="wishlist-item"
-                onClick={addToWishlist}
-                style={style}>
-                <span className="wishlist-item-title">{data.name}</span>
+            <li key={data._id} className="wishlist-item" style={style}>
+                <span className="wishlist-item-title">
+                    {data.name}
+                    <span
+                        className="wishlist-item-toggle"
+                        onClick={clickHandler}>☆
+                    </span>
+                </span>
             </li>
         );
     },
