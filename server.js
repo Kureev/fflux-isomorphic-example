@@ -16,7 +16,6 @@ const routes = require('./app/routes');
 const Wishlist = require('./app/app');
 
 const app = express();
-require('./server/api')(app);
 
 /* Configure static path for express */
 app.use(express.static(__dirname + '/'));
@@ -26,6 +25,8 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
     extended: true
 }));
+
+require('./server/api')(app);
 
 /* We're going to use ejs as template engine */
 app.set('view engine', 'ejs');
