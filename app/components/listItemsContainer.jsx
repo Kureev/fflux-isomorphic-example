@@ -32,10 +32,6 @@ const ListItemsContainer = React.createClass({
     },
 
     storeDidUpdate() {
-        const store = this.props.app
-            .stores()
-            .get('list');
-
         this.forceUpdate();
     },
 

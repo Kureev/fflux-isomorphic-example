@@ -1,6 +1,7 @@
 'use strict';
 
-import React, { Component } from 'react';
+import React from 'react';
+import ListItems from './listItems';
 
 const Wishlist = React.createClass({
     statics: {
@@ -11,9 +12,39 @@ const Wishlist = React.createClass({
         }
     },
 
+    componentWillMount() {
+        const app = this.props.app;
+
+        app.stores()
+            .get('wishlist')
+            .addListener('change', this.storeDidUpdate);
+
+        Wishlist.fetchData(app);
+    },
+
+    componentWillUnmount() {
+        const app = this.props.app;
+
+        app.stores()
+            .get('wishlist')
+            .removeListener('change', this.storeDidUpdate);
+    },
+
+    storeDidUpdate() {
+        this.forceUpdate();
+    },
+
     render() {
+        const actions = this.props.app
+            .actions()
+            .get('wishlist');
+
+        const store = this.props.app
+            .stores()
+            .get('wishlist');
+
         return (
-            <section>Wishlist is empty</section>
+            <ListItems actions={actions} items={store.getItems()} />
         );
     }
 });
