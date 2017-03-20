@@ -1,4 +1,6 @@
 ## FFlux isomorphic application - WIP
+
+[![Greenkeeper badge](https://badges.greenkeeper.io/Kureev/fflux-isomorphic-example.svg)](https://greenkeeper.io/)
 Example of usage fflux for creating isomorphic apps
 
 ## Install
